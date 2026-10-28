@@ -1,0 +1,15 @@
+# 哔哩哔哩去广告 · Quantumult X 分流规则（可选）
+# 对应 Loon 插件「哔哩哔哩去广告」的 [Rule]，放在 [filter_remote] 中引用。
+# 不要给这份规则设置 force-policy，否则下面的 reject 会被改成别的策略。
+
+# 备用 API 域名：拒绝后客户端只使用会被重写处理的主域名
+host, api.biliapi.com, reject
+host, app.biliapi.com, reject
+host, api.biliapi.net, reject
+host, app.biliapi.net, reject
+
+# P2P（PCDN）：Loon 中为 AND(DOMAIN-SUFFIX chat.bilibili.com, OR(KEYWORD stun / tracker / p2p))，
+# Quantumult X 不支持逻辑规则，改写为等价的通配规则
+host-wildcard, *stun*.chat.bilibili.com, reject
+host-wildcard, *tracker*.chat.bilibili.com, reject
+host-wildcard, *p2p*.chat.bilibili.com, reject
